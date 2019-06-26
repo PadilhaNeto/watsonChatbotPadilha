@@ -1,0 +1,218 @@
+{
+  "name": "Pedir Orçamento",
+  "intents": [
+    {
+      "intent": "pedir_orçamento",
+      "examples": [
+        {
+          "text": "Quanto cobra por uma arte?"
+        },
+        {
+          "text": "Quanto cobra por uma logo?"
+        },
+        {
+          "text": "qual valor para fazer uma logo?"
+        },
+        {
+          "text": "Qual valor de uma arte para rede social?"
+        },
+        {
+          "text": "Quanto sai uma arte para facecook?"
+        },
+        {
+          "text": "gostaria de um orçamento"
+        },
+        {
+          "text": "queria fazer um orçamento"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "saudacao",
+      "examples": [
+        {
+          "text": "Bom dia"
+        },
+        {
+          "text": "Boa tarde"
+        },
+        {
+          "text": "Boa noite"
+        },
+        {
+          "text": "Olá"
+        },
+        {
+          "text": "E aí"
+        }
+      ],
+      "description": ""
+    }
+  ],
+  "entities": [
+    {
+      "entity": "saudacao_formal",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "Bom Dia",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "Boa Tarde",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "Boa Noite",
+          "synonyms": []
+        }
+      ],
+      "fuzzy_match": true
+    }
+  ],
+  "language": "pt-br",
+  "metadata": {
+    "api_version": {
+      "major_version": "v1",
+      "minor_version": "2018-09-20"
+    }
+  },
+  "description": "",
+  "dialog_nodes": [
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Opa Beleza, como posso te ajudar?"
+              }
+            ],
+            "response_type": "text"
+          }
+        ]
+      },
+      "parent": "node_1_1561559192737",
+      "metadata": {},
+      "conditions": "anything_else",
+      "dialog_node": "node_3_1561559526721",
+      "previous_sibling": "node_2_1561559241145"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "@saudacao_formal para voce também!"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_1_1561559192737",
+      "metadata": {},
+      "conditions": "@saudacao_formal",
+      "dialog_node": "node_2_1561559241145"
+    },
+    {
+      "type": "standard",
+      "title": "Em outros casos",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Eu não entendi. Você pode tentar reformular a frase."
+              },
+              {
+                "text": "Você pode reformular sua afirmação? Eu não estou entendendo."
+              },
+              {
+                "text": "Eu não entendi o sentido."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "metadata": {},
+      "conditions": "anything_else",
+      "dialog_node": "Em outros casos",
+      "previous_sibling": "node_4_1561559570169"
+    },
+    {
+      "type": "standard",
+      "title": "Pede Orçamento",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Estamos com os seguintes preços: <br> Capa para facebook - 50,00 <br> Logo a partir de 200,00 <br> Artes para redes sociais - 45,00 <br> Arte de cartão de visita - 35,00 <br> Arte para flyer - 70,00 <br> Para mais informações utilize o whatsapp 42 9144-6679"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "metadata": {},
+      "conditions": "#pedir_orçamento",
+      "dialog_node": "node_4_1561559570169",
+      "previous_sibling": "node_1_1561559192737"
+    },
+    {
+      "type": "standard",
+      "title": "Saudação",
+      "output": {},
+      "metadata": {
+        "_customization": {
+          "mcr": true
+        }
+      },
+      "conditions": "#saudacao",
+      "digress_in": "does_not_return",
+      "dialog_node": "node_1_1561559192737",
+      "digress_out": "allow_all",
+      "previous_sibling": "Bem-vindo"
+    },
+    {
+      "type": "standard",
+      "title": "Bem-vindo",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Olá. Como posso te ajudar?"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "metadata": {},
+      "conditions": "welcome",
+      "dialog_node": "Bem-vindo"
+    }
+  ],
+  "workspace_id": "5a69ebf6-7d5c-40ef-8a9b-a92b157bb27f",
+  "counterexamples": [],
+  "system_settings": {
+    "tooling": {
+      "store_generic_responses": true
+    }
+  },
+  "learning_opt_out": false,
+  "status": "Available"
+}
